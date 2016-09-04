@@ -13,17 +13,32 @@ public class BurbujaOptimizada  extends Algoritmo{
 			System.out.println(principio);
 			
 		     
-	                final int N=vec.length;
-	                for(int i=N-1;i>0;i--){
-	                        for(int j=0;j<i;j++){
-	                                if(vec[j]>vec[j+1]){
-	                                        int temp=vec[j];
-	                                        vec[j]=vec[j+1];
-	                                        vec[j+1]=temp;
-	                                }
-	                        }
-	                        
-	                }
+			
+			
+		
+			int AUX;
+			int N=vec.length, paso, j;
+			boolean bandera=true;
+			
+			for(paso=0;paso<N-1&&bandera;paso++)
+			/* si en el paso anterior no hubo cambios se detiene ciclo */
+			  {
+				bandera=false;
+				for(j=0;j<N-paso-1;j++)
+				/* las comparaciones van dismuyendo
+				a medida que se efectuan los pasos */
+				  {
+					if(vec[j]>vec[j+1])
+					  {
+						bandera=true; /* indica si se han realizados cambios o no */
+						AUX=vec[j+1];
+						vec[j+1]=vec[j];
+						vec[j]=AUX;
+					  }
+					
+					
+				  }
+			  }
 	                
 	                Long fin=System.nanoTime();
             		  String tiempo=Long.toString((fin-principio)/1000);
